@@ -398,3 +398,62 @@
   
 </body>
     </html>
+
+    <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Snow Falling Effect</title>
+    <style>
+        body, html {
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+            height: 100%;
+            background-color: #000;
+        }
+
+        .falling-image {
+            position: absolute;
+            top: -50px;
+            width: 30px; /* Adjust the size of the falling image */
+            height: 30px; /* Adjust the size of the falling image */
+            opacity: 0.8;
+            animation: fall linear infinite;
+        }
+
+        @keyframes fall {
+            0% {
+                transform: translateY(0);
+            }
+            100% {
+                transform: translateY(100vh);
+            }
+        }
+    </style>
+</head>
+<body>
+    <script>
+        function createFallingImage() {
+            const image = document.createElement('img');
+            image.src = "https://i.ibb.co/CsPJ27N/2119785.png";  // Replace with your image URL
+            image.classList.add('falling-image');
+            
+            // Set random starting position for each image
+            image.style.left = `${Math.random() * 100}vw`; // Randomly position horizontally
+            image.style.animationDuration = `${5 + Math.random() * 5}s`;  // Random speed with a longer range
+            
+            document.body.appendChild(image);
+
+            // Remove the image after it has fallen
+            setTimeout(() => {
+                image.remove();
+            }, 10000);  // Remove image after 10 seconds, increased duration
+        }
+
+        // Create images every 500 milliseconds (less frequent)
+        setInterval(createFallingImage, 500);
+    </script>
+</body>
+</html>
